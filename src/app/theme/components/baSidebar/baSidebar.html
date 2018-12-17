@@ -1,0 +1,16 @@
+<aside class="al-sidebar" sidebarResize>
+  <!-- <div class="al-headbar">
+    <img class="head-img" src="assets/img/logo.png" alt="" />
+    <div class="head-text">瑞懿科技</div>
+    <i class="fa fa-bars" (click)="MenuCollapsedClick()"></i>
+  </div> -->
+  <ul class="collapsed-top-menu">
+    <li class="al-sidebar-list-item selected" title="{{titleName}}">
+      <a class="al-sidebar-list-link">
+        <i class="fa fa-bars" (click)="MenuUnCollapsedClick()"></i>
+        <span>{{titleName}}</span>
+      </a>
+    </li>
+  </ul>
+  <ba-menu [menuHeight]="menuHeight" [sidebarCollapsed]="isMenuCollapsed" (expandMenu)="menuExpand()"></ba-menu>
+</aside>

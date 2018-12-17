@@ -1,0 +1,46 @@
+<div class="content-wrap" [ngStyle]="{'height':changeHeight+'px'}">
+  <div class="top-module mb-10">
+    <div class="select-box base_input">
+      <input type="text" class="select-con" placeholder="请输入公司名称" [(ngModel)]="name" (keyup)="keyup($event)" />
+      <span class="fa fa-search select-but" (click)="selectClick()"></span>
+    </div>
+  </div>
+  <div class="wrap-border clearfix">
+    <table class="table table-hover table-style1">
+      <thead class="table-head-style1">
+        <tr>
+          <th scope="col">序号</th>
+          <th scope="col">拿地公司</th>
+          <th scope="col">公司2</th>
+          <th scope="col">公司3</th>
+          <th scope="col">是否确定</th>
+          <th class="txt-center" scope="col">操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of companyListData,let i = index;">
+          <td class="txt-center">{{(PageNum - 1)*10 + i + 1}}</td>
+          <td>{{data.ENTERPRISE_NAME}}</td>
+          <td>{{data.ENTERPRISE_FATHER}}</td>
+          <td>{{data.ENTERPRISE_SUN}}</td>
+          <td>{{data.ZT==1?'确定':'不确定'}}</td>
+          <td class="operation-wrap txt-center">
+            <i (click)="EditInfo(data)" class="fa fa-lg fa-pencil" title="编辑"></i>
+          </td>
+        </tr>
+        <tr *ngIf="loadingState">
+          <td style="text-align:center;" colspan="6">
+            <sk-fading-circle> </sk-fading-circle>
+          </td>
+        </tr>
+        <tr class="" *ngIf="!companyListData.length">
+          <td style="text-align:center;" colspan="10"> 暂无数据</td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination *ngIf="RecordCount/PageSize >1" class="fr" [collectionSize]="RecordCount" [(page)]="PageNum" [(pageSize)]="PageSize"
+      (pageChange)="pageChange()">
+    </ngb-pagination>
+  </div>
+</div>

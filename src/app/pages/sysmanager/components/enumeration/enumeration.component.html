@@ -1,0 +1,72 @@
+<div class="content-wrap" [ngStyle]="{'height':changeHeight+'px'}">
+  <split direction="horizontal" [gutterSize]="5">
+    <split-area [size]="15">
+      <div class="addtype-but">
+        <button type="button" class="btn add-role btn-sm" (click)="addClick(1)">添加类别</button>
+        <button type="button" class="btn add-role btn-sm" (click)="addClick(2)">添加枚举</button>
+      </div>
+      <ul id="treeDemo" class="ztree"></ul>
+    </split-area>
+    <split-area [size]="85">
+      <div *ngIf="typeItemBox==1" class="type-item-box mt-10 ml-10">
+        <div class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">枚举类别:</label>
+            <div class="select2-box col-sm-9">
+              <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event,'TypeItem')"></select2>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">类别名称:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="typeItemData.EXPLAINTYPE_NAME" placeholder="类别名称">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">类别索引:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="typeItemData.EXPLAINTYPE_INDEX" placeholder="类别索引">
+            </div>
+          </div>
+          <div class="operator-but">
+            <button type="button" class="btn save btn-sm mr-10" (click)="okClick(okType)">保存</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteClick('typeDelete')">删除</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="typeItemBox==2" class="type-item-box mt-10 ml-10">
+        <div class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">枚举类别:</label>
+            <div class="select2-box col-sm-9">
+              <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event,'EnumItem')"></select2>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">枚举名称:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="enumItemData.EXPLAIN_NAME" placeholder="枚举名称">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">枚举英文名称:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="enumItemData.EXPLAIN_ENNAME" placeholder="枚举英文名称">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">索引:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="enumItemData.EXPLAIN_INDEX" placeholder="类别索引">
+            </div>
+          </div>
+          <div class="operator-but">
+            <button type="button" class="btn save btn-sm mr-10" (click)="okClick(okType)">保存</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteClick('enumDelete')">删除</button>
+            <button type="button" class="btn btn-warning btn-sm ml-10" (click)="editClick()">编辑</button>
+          </div>
+        </div>
+      </div>
+    </split-area>
+  </split>
+</div>

@@ -1,0 +1,66 @@
+.main-title{
+	text-align: center;
+	position: relative;
+	font-size: 24px;
+	background: #fff;
+	padding:15px;
+	margin: 0px 0px 15px 0px;
+	line-height: 24px;
+    display: block;
+    height:55px;
+	.backicon{
+		position: absolute;
+		left:20px;
+		top: 9px;
+    	font-size: 36px;
+	}
+}
+.wrapper-content {
+    padding: 0px 10px 80px 20px;
+    .ibox-content {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0;
+        transition: .2s linear all;
+        .form-horizontal{
+            width:100%;
+            .control-label{
+                padding-top: 7px;
+                margin-bottom: 0;
+                text-align: right;
+            }
+            input,select {                
+                border:1px solid #e5e6e7;
+                border-radius: 0px;
+                background: #fff;
+            }  
+            .form-group label {
+                text-align: right;
+            }
+            .form-group{
+                .panel-img{
+                    position: relative;
+                    .imgtips{
+                        position: absolute;
+                        left:170px;
+                        top:80%;
+                    }
+                }
+                .textarea-remark{
+                    width:100%;
+                    border: 1px solid #e5e6e7;
+                    padding:0.5rem 0.75rem;
+                    border-radius: 0px;outline: none;
+                }
+            }
+            .line-title{
+                font-weight: 700;
+                margin-left: 20px;
+            }
+        }
+    }
+}

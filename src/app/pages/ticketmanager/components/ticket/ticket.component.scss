@@ -1,0 +1,73 @@
+.wrap {
+    padding: 10px;
+    background: #fff;
+    .wrap-border {
+        padding: 10px;
+        .operation-wrap {
+        .exist{
+            color: cornflowerblue;
+        }
+        }
+        .queryState {
+            background: #b9d0f7;
+        }
+        .editState {
+            background: lawngreen; 
+        }
+    }
+    .txt-center {
+        text-align: center;
+    }
+    .floatright{
+        float:right;
+        margin-right: 20px;
+        .file {
+            position: relative;
+            display: inline-block;
+            border-radius: 4px;
+            overflow: hidden;
+            text-decoration: none;
+            text-indent: 0;
+        }
+        .file input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .file:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.top-module {
+    display: flex;
+    justify-content: space-between;
+    .showmore{
+        margin-left: 10px;
+        i{
+            margin-left: 3px;
+        }
+    }
+}
+.more-content{
+    margin-left: 10px;
+    margin-top: 20px;
+    .control-label{
+        line-height: 30px;
+        margin-left: 15px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .wrap{
+        min-width: 1200px;
+        overflow-x: scroll;
+        .col-sm-2{
+            width:20%;
+        }
+
+    }
+  }

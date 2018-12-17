@@ -1,0 +1,83 @@
+<div class="content-wrap" [ngStyle]="{'height':changeHeight+'px'}">
+  <split direction="horizontal" [gutterSize]="5">
+    <split-area [size]="15">
+      <div class="addtype-but">
+        <button type="button" class="btn add-role btn-sm" (click)="addClick(1)">添加类别</button>
+        <button type="button" class="btn add-role btn-sm" (click)="addClick(2)">添加角色</button>
+      </div>
+      <ul id="treeDemo" class="ztree"></ul>
+    </split-area>
+    <split-area [size]="85">
+      <div *ngIf="typeItemBox==1" class="type-item-box mt-10 ml-10">
+        <div class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">角色类别:</label>
+            <div class="select2-box col-sm-9">
+              <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event,'TypeItem')"></select2>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">角色类别名称:</label>
+            <div class="col-sm-9 ">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="typeItemData.ROLETYPE_NAME" placeholder="角色类别名称">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">角色类别索引:</label>
+            <div class="col-sm-9 " >
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="typeItemData.ROLETYPE_INDEX" placeholder="角色类别索引">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">角色说明:</label>
+            <div class="col-sm-9 ">
+              <input type="text" class="form-control base_input" id="" [(ngModel)]="typeItemData.ROLETYPE_DESC" placeholder="角色说明">
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+            <label class="col-sm-3 col-form-label">是否有效:</label>
+            <div class="col-sm-9">
+              <select class="form-control" style="height:32px">
+                <option value="1">有效</option>
+                <option value="0">无效</option>
+              </select>
+            </div>
+          </div> -->
+          <div class="operator-but">
+            <button type="button" class="btn save btn-sm mr-10" (click)="okClick(okType)">保存</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteClick('typeDelete')">删除</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="typeItemBox==2" class="type-item-box mt-10 ml-10">
+        <div class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">角色类别:</label>
+            <div class="select2-box col-sm-9">
+              <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event,'RoleItem')"></select2>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">角色名称:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="" [(ngModel)]="roleItemData.Rolename" placeholder="角色名称">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">是否有效:</label>
+            <div class="col-sm-9">
+              <select class="form-control" name="state" [(ngModel)]="roleItemData.State" style="height:35px">
+                <option value="1">有效</option>
+                <option value="0">无效</option>
+              </select>
+            </div>
+          </div>
+          <div class="operator-but">
+            <button type="button" class="btn save mr-10" (click)="okClick(okType)">保存</button>
+            <button type="button" class="btn btn-danger" (click)="deleteClick('roleDelete')">删除</button>
+          </div>
+        </div>
+      </div>
+    </split-area>
+  </split>
+</div>

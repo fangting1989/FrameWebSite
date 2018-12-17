@@ -1,0 +1,18 @@
+<div class="content-top clearfix">
+  <span class="tit">{{SysConfig.PlatFormName}}</span>
+    <ul class="breadcrumb al-breadcrumb top-con-n">
+      <li class="breadcrumb-nav-item">
+          <i class="fa fa-bars" (click)="MenuCollapsedClick()"></i>
+      </li>
+        <li class="breadcrumb-item" *ngFor="let item of NavArray">
+          <a routerLink="{{item.routerLink}}">{{item.NavName}}</a>
+        </li>
+        <!--<li class="breadcrumb-item active" translate>系统管理</li>
+        <li class="breadcrumb-item active" translate>系统管理</li>-->
+      </ul>
+      <ul class="topnav top-con-n">
+        <li class="name">{{model.Username}},您好 </li>
+        <li (click)="ChangePassWord()"><a href="javascript:void(0);"><i class="fa fa-cog"  ></i>密码修改</a></li>
+        <li (click)="LoginOut()"><a href="javascript:void(0);" class="signout"><i class="fa fa-power-off"></i>退出</a></li>
+      </ul>
+</div>

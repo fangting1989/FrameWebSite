@@ -1,0 +1,91 @@
+<div class="content-wrap" [ngStyle]="{'height':changeHeight+'px'}">
+  <split direction="horizontal" [gutterSize]="5">
+    <split-area [size]="15">
+      <div class="addtype-but">
+        <button type="button" class="btn add-role btn-sm" (click)="addClick(1)">添加系统</button>
+        <button type="button" class="btn add-role btn-sm" (click)="addClick(2)">添加模块</button>
+      </div>
+      <ul id="treeDemo" class="ztree"></ul>
+    </split-area>
+    <split-area [size]="85">
+      <div *ngIf="typeItemBox==1" class="type-item-box mt-10 ml-10">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">系统级别:</label>
+          <div class="select2-box col-sm-9">
+            <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event,'systemItem')"></select2>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">系统名称:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control base_input" id="" [(ngModel)]="systemItemData.Systemname" placeholder="系统名称">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">图标:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control base_input" id="" [(ngModel)]="systemItemData.Systemicon" placeholder="图标">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">地址:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control base_input" id="" [(ngModel)]="systemItemData.Systemurl" placeholder="地址">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">是否有效:</label>
+          <div class="col-sm-9">
+            <select class="form-control" name="state" [(ngModel)]="systemItemData.Systemstate" style="height:35px">
+              <option value="1">有效</option>
+              <option value="0">无效</option>
+            </select>
+          </div>
+        </div>
+        <div class="operator-but">
+          <button type="button" class="btn btn-primary btn-sm mr-10" (click)="okClick(okType)">保存</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteClick('systemDelete')">删除</button>
+        </div>
+      </div>
+      <div *ngIf="typeItemBox==2" class="type-item-box mt-10 ml-10">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">系统级别:</label>
+          <div class="select2-box col-sm-9">
+            <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event,'module')"></select2>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">模块名称:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control base_input" id="" [(ngModel)]="moduleData.Modulename" placeholder="模块名称">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">图标:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control base_input" id="" [(ngModel)]="moduleData.Moduleicon" placeholder="图标">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">地址:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control base_input" id="" [(ngModel)]="moduleData.Moduleurl" placeholder="地址">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">是否有效:</label>
+          <div class="col-sm-9">
+            <select class="form-control" name="state" [(ngModel)]="moduleData.Modulestate" style="height:35px">
+              <option value="1">有效</option>
+              <option value="0">无效</option>
+            </select>
+          </div>
+        </div>
+        <div class="operator-but">
+          <button type="button" class="btn btn-primary btn-sm mr-10" (click)="okClick(okType)">保存</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteClick('moduleDelete')">删除</button>
+        </div>
+      </div>
+    </split-area>
+  </split>
+</div>

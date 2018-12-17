@@ -1,0 +1,43 @@
+<div class="modal-wrap">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modaHead}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-horizontal">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label col-form-label-sm">拿地公司:</label>
+        <div class="select2-box col-sm-6">
+          <input type="text" class="form-control" id="" [(ngModel)]="companyData.ENTERPRISE_NAME" placeholder="拿地公司" disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label col-form-label-sm">公司2:</label>
+        <div class="select2-box col-sm-6">
+          <input type="text" class="form-control" id="" [(ngModel)]="companyData.ENTERPRISE_FATHER" placeholder="公司2">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label col-form-label-sm">公司3:</label>
+        <div class="select2-box col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="companyData.ENTERPRISE_SUN" id="" placeholder="公司3">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label col-form-label-sm">状态:</label>
+        <div class="select2-box col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="companyData.ZT" id="" placeholder="状态" disabled>
+        </div>
+      </div>
+      <div style="color:red;padding-left:80px">
+          备注：公司2代表该公司的顶级公司，公司3代表公司2的子公司。
+        </div> 
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success mr-10" (click)="save()">保存</button>
+    <button type="button" class="btn btn-outline-dark" (click)="CloseModal()">关闭</button>
+  </div>
+</div>

@@ -1,0 +1,283 @@
+<div class="wrap staffmanager">
+  <div class="content">
+    <ngb-tabset type="pills">
+      <ngb-tab title="航空公司结算">
+        <ng-template ngbTabContent>
+          <div class="data-content">
+              <div class="more-content">
+                  <div class="form-group row">
+                    <label class="control-label">航空公司:</label>
+                    <div class="col-sm-2">
+                      <select class="form-control" name="state" [(ngModel)]="model_HK.AIRLINE_NAME" style="height:35px">
+                        <option value="{{item.name}}" *ngFor="let item of AirLineArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="more-content">
+                  <div class="form-group row">
+                    <span class="groupRadio control-label">
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="typesel" id="typesel"  value="1" [ngModel]="model_HK.TYPESEL" (ngModelChange)="TYPESELChange($event)">
+                        <span>按周</span>
+                      </label>
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="typesel" id="typesel" value="2"  [ngModel]="model_HK.TYPESEL" (ngModelChange)="TYPESELChange($event)">
+                        <span>按月</span>
+                      </label>
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="typesel" id="typesel" value="3"  [ngModel]="model_HK.TYPESEL" (ngModelChange)="TYPESELChange($event)">
+                        <span>按年</span>
+                      </label>
+                    </span>
+                    <div class="col-sm-1 " *ngIf="this.model_HK.TYPESEL == 1 || this.model_HK.TYPESEL == 2 || this.model_HK.TYPESEL == 3">
+                      <select class="form-control sel-year" placeholder="年份" name="state" [(ngModel)]="model_HK.STARTYEAR" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of YEARArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="this.model_HK.TYPESEL == 1 || this.model_HK.TYPESEL == 2">
+                      <select class="form-control sel-month" placeholder="月份" name="state" [(ngModel)]="model_HK.STARTMONTH" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of MONTHArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="this.model_HK.TYPESEL == 1">
+                      <select class="form-control sel-day" placeholder="周期" name="state" [(ngModel)]="model_HK.STARTCYC" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of CYCTIMEArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <label class="control-label">~</label>
+                    <div class="col-sm-1 " *ngIf="this.model_HK.TYPESEL == 1 || this.model_HK.TYPESEL == 2 || this.model_HK.TYPESEL == 3">
+                      <select class="form-control sel-year" placeholder="年份" name="state" [(ngModel)]="model_HK.ENDYEAR" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of YEARArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="this.model_HK.TYPESEL == 1 || this.model_HK.TYPESEL == 2">
+                      <select class="form-control sel-month" placeholder="月份" name="state" [(ngModel)]="model_HK.ENDMONTH" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of MONTHArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-1" *ngIf="this.model_HK.TYPESEL == 1">
+                      <select class="form-control sel-day" placeholder="周期" name="state" [(ngModel)]="model_HK.ENDCYC" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of CYCTIMEArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <label class="control-label" *ngIf="this.model_HK.TYPESEL == 1">结算状态:</label>
+                    <div class="col-sm-2" *ngIf="this.model_HK.TYPESEL == 1">
+                      <select class="form-control" name="state" [(ngModel)]="model_HK.PAYSTATE" style="height:35px">
+                        <option value="{{item.value}}" *ngFor="let item of HKPayStateArray">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <span class="floatright">
+                        <button class="btn btn-primary " (click)="HKSearchClick()">搜索</button>
+                    </span>
+                  </div>
+                </div>
+      
+                <div class="wrap-border clearfix">
+                  <table class="table table-hover table-style1">
+                    <thead class="table-head-style1">
+                      <tr>
+                        <th scope="col">航空公司</th>
+                        <th scope="col">周期</th>
+                        <th scope="col">机票数</th>
+                        <th scope="col">机票总价</th>
+                        <th scope="col">税费</th>
+                        <th scope="col">价格</th>
+                        <th scope="col">返点</th>
+                        <th scope="col">代理费</th>
+                        <th scope="col">航空结算价</th>
+                        <th scope="col" *ngIf="model_HK.TYPESEL == 1">状态</th>
+                        <th class="txt-center" scope="col">操作</th>
+                      </tr>
+                    </thead>
+      
+                    <tbody>
+                      <tr *ngFor="let data of DataList,let i = index;" [ngClass]="{'queryState': data.ZT=='5','editState':data.ZT == '2'}">
+                        <td>{{data.AIRLINE_NAME}}</td>
+                        <td>{{data.newACCOUNTS_CODE}}</td>
+                        <td>{{data.NUM }}</td>
+                        <td>{{data.TOTALBILL }}</td>
+                        <td>{{data.TAXBILL }}</td>
+                        <td>{{data.TICKETBILL }}</td>
+                        <td>{{data.BACKBILL }}</td>
+                        <td>{{data.AGENTSBILL }}</td>
+                        <td>{{data.AIRBILL }}</td>
+                        <td *ngIf="model_HK.TYPESEL == 1">{{data.HKISVALID |bahkpaystatepipe }}</td>
+                        <td class="operation-wrap">
+                          <button class="btn btn-primary " (click)="HKItemDetail(data)">清单</button>
+                          <button class="btn btn-primary " (click)="HKDownLoad(data)">导出</button>
+                          <!-- <button class="btn btn-primary " (click)="HKSearchClick()">对比</button> -->
+                          <a *ngIf="model_HK.TYPESEL == 1" href="javascript:;" class="btn file btn-primary">对比
+                            <input id="file_{{data.AIRLINE_NAME}}_{{data.ACCOUNTS_CODE}}" type="file" name="file" (change)="HKTicketCompare( $event,data)" />
+                          </a>
+                          <button *ngIf="data.HKISVALID != 1 && model_HK.TYPESEL == 1 " class="btn btn-primary " (click)="HKTicketPay(data)">已结算</button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="DLloadingState">
+                        <td style="text-align:center;" [attr.colspan]="model_HK.spancount">
+                          <sk-fading-circle> </sk-fading-circle>
+                        </td>
+                      </tr>
+                      <tr class="" *ngIf="!DataList.length">
+                        <td style="text-align:center;" [attr.colspan]="model_HK.spancount"> 暂无数据</td>
+                      </tr>
+                      <tr class="table-head-style2">
+                        <th class="txt-center">总计</th>
+                        <th scope="col"></th>
+                        <th scope="col">{{model_HK_T.NUM_T}}</th>
+                        <th scope="col">{{model_HK_T.TOTALBILL_T}}</th>
+                        <th scope="col">{{model_HK_T.TAXBILL_T}}</th>
+                        <th scope="col">{{model_HK_T.TICKETBILL_T}}</th>
+                        <th scope="col">{{model_HK_T.BACKBILL_T}}</th>
+                        <th scope="col">{{model_HK_T.AGENTSBILL_T}}</th>
+                        <th scope="col">{{model_HK_T.AIRBILL_T}}</th>
+                        <th scope="col" *ngIf="model_HK.TYPESEL == 1"></th>
+                        <th class="txt-center" scope="col"></th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <ngb-pagination *ngIf="RecordCount/PageSize >1" class="fr" [collectionSize]="RecordCount" [(page)]="PageNum" [(pageSize)]="PageSize"
+                    (pageChange)="pageChange()">
+                  </ngb-pagination>
+                </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="代理结算">
+        <ng-template ngbTabContent>
+            <div class="data-content">
+                <div class="more-content">
+                    <div class="form-group row">
+                      <label class="control-label">代理类型:</label>
+                      <div class="col-sm-2">
+                        <select class="form-control" name="state" [(ngModel)]="model_DL.DLTYPE" (change)="DLTYPEChangeEvent($event)" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of DLTypeArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-2" *ngIf="setting.showDlSelect && model_DL.DLTYPE >0">
+                        <select class="form-control" name="SelDLNAME" [(ngModel)]="model_DL.SelDLNAME">
+                          <option value="{{item.DL_NAME}}" *ngFor="let item of DLNameArray">{{item.DL_NAME}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-2" *ngIf="!setting.showDlSelect && model_DL.DLTYPE >0">
+                        <input [(ngModel)]="model_DL.GR_DLNAME" name="GR_DLNAME" type="text" class="form-control base_input" id="author" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="more-content">
+                    <div class="form-group row">
+                      <span class="groupRadio control-label">
+                        <label class="radio-inline custom-radio nowrap">
+                          <input type="radio" name="dltypesel" id="dltypesel1" value="1" [ngModel]="model_DL.TYPESEL" (ngModelChange)="DLTYPESELChange($event)">
+                          <span>按周</span>
+                        </label>
+                        <label class="radio-inline custom-radio nowrap">
+                          <input type="radio" name="dltypesel" id="dltypesel2" value="2" [ngModel]="model_DL.TYPESEL" (ngModelChange)="DLTYPESELChange($event)">
+                          <span>按月</span>
+                        </label>
+                        <label class="radio-inline custom-radio nowrap">
+                          <input type="radio" name="dltypesel" id="dltypesel3" value="3" [ngModel]="model_DL.TYPESEL" (ngModelChange)="DLTYPESELChange($event)">
+                          <span>按年</span>
+                        </label>
+                      </span>
+                      <div class="col-sm-1 " *ngIf="this.model_DL.TYPESEL == 1 || this.model_DL.TYPESEL == 2 || this.model_DL.TYPESEL == 3">
+                        <select class="form-control sel-year" placeholder="年份" name="state" [(ngModel)]="model_DL.STARTYEAR" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of YEARArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-1" *ngIf="this.model_DL.TYPESEL == 1 || this.model_DL.TYPESEL == 2">
+                        <select class="form-control sel-month" placeholder="月份" name="state" [(ngModel)]="model_DL.STARTMONTH" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of MONTHArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-1" *ngIf="this.model_DL.TYPESEL == 1">
+                        <select class="form-control sel-day" placeholder="周期" name="state" [(ngModel)]="model_DL.STARTCYC" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of CYCTIMEArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <label class="control-label">~</label>
+                      <div class="col-sm-1 " *ngIf="this.model_DL.TYPESEL == 1 || this.model_DL.TYPESEL == 2 || this.model_DL.TYPESEL == 3">
+                        <select class="form-control sel-year" placeholder="年份" name="state" [(ngModel)]="model_DL.ENDYEAR" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of YEARArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-1" *ngIf="this.model_DL.TYPESEL == 1 || this.model_DL.TYPESEL == 2">
+                        <select class="form-control sel-month" placeholder="月份" name="state" [(ngModel)]="model_DL.ENDMONTH" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of MONTHArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-1" *ngIf="this.model_DL.TYPESEL == 1">
+                        <select class="form-control sel-day" placeholder="周期" name="state" [(ngModel)]="model_DL.ENDCYC" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of CYCTIMEArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <label class="control-label">结算状态:</label>
+                      <div class="col-sm-2">
+                        <select class="form-control" name="state" [(ngModel)]="model_DL.PAYSTATE" style="height:35px">
+                          <option value="{{item.value}}" *ngFor="let item of PAYSTATEArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <span class="floatright">
+                          <button class="btn btn-primary" (click)="DLSearchClick()">搜索</button>
+                      </span>
+                    </div>
+                  </div>
+        
+                  <div class="wrap-border clearfix">
+                    <table class="table table-hover table-style1">
+                      <thead class="table-head-style1">
+                        <tr>
+                          <th scope="col">代理类型</th>
+                          <th scope="col">代理人</th>
+                          <th scope="col">周期</th>
+                          <th scope="col">机票数</th>
+                          <th scope="col">代理结算价</th>
+                          <th scope="col" *ngIf="model_DL.TYPESEL == 1">状态</th>
+                          <th class="txt-center" scope="col">操作</th>
+                        </tr>
+                      </thead>
+        
+                      <tbody>
+                        <tr *ngFor="let data of DLDataList,let i = index;" [ngClass]="{'queryState': data.ZT=='5','editState':data.ZT == '2'}">
+                          <td>{{data.DLTYPE | baagenttype}}</td>
+                          <td>{{data.DLNAME}}</td>
+                          <td>{{data.newACCOUNTS_CODE }}</td>
+                          <td>{{data.NUM }}</td>
+                          <td>{{data.DLBILL }}</td>
+                          <td *ngIf="model_DL.TYPESEL == 1">{{data.ISVALID |bapaystatepipe }}</td>
+                          <td class="operation-wrap txt-center">
+                              <button class="btn btn-primary " (click)="DLItemDetail(data)">清单</button>
+                              <button class="btn btn-primary " (click)="DLDownLoad(data)">导出</button>
+                              <!--  -->
+                              <button *ngIf="data.ISVALID != 1 && data.DLTYPE != 10 && this.model_DL.TYPESEL == 1" class="btn btn-primary " (click)="InputMoneyClick(data)">录入金额</button>
+                          </td>
+                        </tr>
+                        <tr *ngIf="loadingState">
+                          <td style="text-align:center;" [attr.colspan]="model_DL.spancount">
+                            <sk-fading-circle> </sk-fading-circle>
+                          </td>
+                        </tr>
+                        <tr class="" *ngIf="!DLDataList.length">
+                          <td style="text-align:center;" [attr.colspan]="model_DL.spancount"> 暂无数据</td>
+                        </tr>
+                        <tr class="table-head-style2">
+                          <th class="txt-center">总计</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                          <th scope="col">{{model_DL_T.NUM_T}}</th>
+                          <th scope="col">{{model_DL_T.AGENTSBILL_T}}</th>
+                          <th scope="col" *ngIf="model_DL.TYPESEL == 1"></th>
+                          <th class="txt-center" scope="col"></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <ngb-pagination *ngIf="DLRecordCount/PageSize >1" class="fr" [collectionSize]="DLRecordCount" [(page)]="PageNum" [(pageSize)]="PageSize"
+                      (pageChange)="DLpageChange()">
+                    </ngb-pagination>
+                  </div>
+            </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

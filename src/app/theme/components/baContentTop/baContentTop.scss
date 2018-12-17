@@ -1,0 +1,104 @@
+@import '../../sass/conf/conf';
+ba-content-top{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 8px;
+}
+.content-top {
+  height:80px;
+  
+  border-bottom:1px solid #E7EAEC;
+  .tit{
+    line-height: 80px;
+    font-size: 38px;
+    float:left;
+    margin-left: 30px;
+    color:#0074ff;
+  }
+  .topnav{
+    font-size: 12px;
+    float:right;
+    text-align: right;
+    li{
+      list-style: none;
+      float:left;
+      display: block;
+      margin: 0px 5px 0px 5px;
+    }
+    .name{
+      color:#5E5E5E;
+      margin-right: 10px;
+    }
+  }
+  .top-con-n{
+    height:40px;
+    margin:20px;
+    line-height: 40px;
+  }
+  .breadcrumb{
+    border-radius: 0px;
+  }
+}
+
+h1.al-title {
+  font-weight: $font-bold;
+  color: $default-text;
+  float: left;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.al-breadcrumb {
+  background: none;
+  color: $default-text;
+  padding: 0;
+  margin: 0px 0px 10px 0px;
+  float: left;
+  border:none;
+  border-left: 1px solid #ececec;
+  padding-left: 15px;
+  li {
+    font-size: 12px;
+    font-weight: $font-normal;
+    a {
+      color: $primary-light;
+    }
+
+    &.breadcrumb-item.active {
+      color: $default-text;
+    }
+    &.breadcrumb-nav-item{
+      float: left;
+      padding-right: 15px;
+      font-size: 24px;
+      color:#bec1ca;
+    }
+  }
+}
+
+.al-look {
+  float: right;
+  margin-right: 10px;
+  padding-top: 10px;
+  > a {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .content-top{
+    .al-breadcrumb{
+      border-left:none;
+    }
+    .tit{
+      display: none;
+    }
+    .breadcrumb{
+      .breadcrumb-item{
+        display: none;
+      }
+    }
+  }
+}

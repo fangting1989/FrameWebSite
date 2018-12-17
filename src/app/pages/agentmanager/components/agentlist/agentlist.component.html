@@ -1,0 +1,49 @@
+<div class="wrap" [ngStyle]="{'min-height': changeHeight+'px'}">
+  <div class="top-module mb-10">
+    <div class="select-box base_input">
+      <input type="text" class="select-con" placeholder="请输入用户名称" [(ngModel)]="landName" (keyup)="keyup($event)" />
+      <span class="fa fa-search select-but" (click)="selectClick()"></span>
+    </div>
+
+    <!-- <input type="file" name="file" (change)="getUpload( $event)" /> -->
+    <!-- <button class="btn floatright" (click)="FileUpladClick()">上传</button> -->
+    <button class="btn floatright btn-primary" (click)="AddMember()">添加代理</button>
+  </div>
+  <div class="wrap-border clearfix">
+    <table class="table table-hover table-style1">
+      <thead class="table-head-style1">
+        <tr>
+          <th scope="col">序号</th>
+          <th scope="col">代理名称</th>
+          <th scope="col">代理类型</th>
+          <th scope="col">备注</th>
+          <th class="txt-center" scope="col">操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of landListData,let i = index;" [ngClass]="{'queryState': data.ZT=='5','editState':data.ZT == '2'}">
+          <td class="txt-center">{{(PageNum - 1)*10 + i + 1}}</td>
+          <td>{{data.DL_NAME}}</td>
+          <td>{{data.newDLTYPE}}</td>
+          <td>{{data.REMARK }}</td>
+          <td class="operation-wrap txt-center">
+            <i (click)="EditInfo(data)" class="fa fa-lg fa-pencil" title="编辑"></i>
+            <i (click)="Del(data)" class="fa fa-lg fa-trash-o" title="删除"></i>
+          </td>
+        </tr>
+        <tr *ngIf="loadingState">
+          <td style="text-align:center;" colspan="5">
+            <sk-fading-circle> </sk-fading-circle>
+          </td>
+        </tr>
+        <tr class="" *ngIf="!landListData.length">
+          <td style="text-align:center;" colspan="5"> 暂无数据</td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination *ngIf="RecordCount/PageSize >1" class="fr" [collectionSize]="RecordCount" [(page)]="PageNum" [(pageSize)]="PageSize"
+      (pageChange)="pageChange()">
+    </ngb-pagination>
+  </div>
+</div>

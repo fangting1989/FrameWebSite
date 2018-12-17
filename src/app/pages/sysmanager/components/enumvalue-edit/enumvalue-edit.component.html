@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{modaHead}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="content-wrap" [ngStyle]="{'height':changeHeight+'px'}">
+    <split direction="horizontal" [gutterSize]="5">
+      <split-area [size]="20">
+        <div class="mr-15">
+          <div class="addtype-but">
+            <button type="button" class="btn btn-success btn-sm" (click)="addClick()">添加枚举值</button>
+            <!-- <button type="button" class="btn btn-info btn-sm" (click)="addClick(2)">添加枚举</button> -->
+          </div>
+          <ul id="enumeValuetreeDemo" class="ztree"></ul>
+        </div>
+      </split-area>
+      <split-area [size]="80">
+        <div *ngIf="enumValueBox" class="type-item-box mt-10 ml-10">
+          <div class="form-horizontal">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label col-form-label-sm">枚举类别:</label>
+              <div class="select2-box col-sm-10">
+                <select2 [(data)]="exampleData" [value]="startValue" (valueChanged)="changed($event)"></select2>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label col-form-label-sm">枚举内容:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="" [(ngModel)]="enumValueData.ENUM_NAME" placeholder="枚举内容">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label col-form-label-sm">枚举值:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="" [(ngModel)]="enumValueData.ENUM_VALUE" placeholder="枚举值">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label col-form-label-sm">索引:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="" [(ngModel)]="enumValueData.ENUM_INDEX" placeholder="索引">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label col-form-label-sm">是否有效:</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="state" [(ngModel)]="enumValueData.ISVALID" style="height:35px">
+                  <option value="1">有效</option>
+                  <option value="0">无效</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label col-form-label-sm">说明:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="" [(ngModel)]="enumValueData.ENUM_DESC" placeholder="说明">
+              </div>
+            </div>
+            <div class="operator-but">
+              <button type="button" class="btn btn-primary btn-sm mr-10" (click)="okClick(okType)">保存</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteClick()">删除</button>
+            </div>
+          </div>
+        </div>
+      </split-area>
+    </split>
+  </div>
+</div>
+<div class="modal-footer">
+  <!-- <button type="button" class="btn btn-outline-success mr-10">保存</button> -->
+  <button type="button" class="btn btn-outline-dark" (click)="CloseModal()">关闭</button>
+</div>

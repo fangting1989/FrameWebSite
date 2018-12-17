@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{modaHead}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="wrap modal-body">
+  <div><button type="button" class="btn btn-outline-dark" (click)="ExportExcel()">导出excel</button></div>
+  <div class="content-wrap">
+    <div class="wrap-border clearfix">
+      <table class="table table-hover table-style1" id="compare_teble_result">
+        <thead class="table-head-style1">
+          <tr>
+            <th scope="col">票号</th>
+            <th scope="col">总价</th>
+            <th scope="col">对比结果</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let data of DataList,let i = index;" [ngClass]="{'queryState': data.ZT=='5','editState':data.ZT == '2'}">
+            <td>{{data.TICKETCODE}}</td>
+            <td *ngIf="data.ERRCODE != 2">{{data.TOTALBILL}}</td>
+            <td *ngIf="data.ERRCODE == 2">{{data.SYSTOTALBILL}}/{{data.TOTALBILL}}</td>
+            <td  [ngClass]="{'txtRed': data.ERRCODE!=99}" >{{data.COMPAREDATA }}</td>
+          </tr>
+          <tr *ngIf="loadingState">
+            <td style="text-align:center;" colspan="3">
+              <sk-fading-circle> </sk-fading-circle>
+            </td>
+          </tr>
+          <tr class="" *ngIf="!DataList.length">
+            <td style="text-align:center;" colspan="3"> 暂无数据</td>
+          </tr>
+        </tbody>
+      </table>
+      <ngb-pagination *ngIf="RecordCount/PageSize >1" class="fr" [collectionSize]="RecordCount" [(page)]="PageNum" [(pageSize)]="PageSize"
+        (pageChange)="pageChange()">
+      </ngb-pagination>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="CloseModal()">关闭</button>
+</div>

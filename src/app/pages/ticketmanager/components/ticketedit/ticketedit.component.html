@@ -1,0 +1,162 @@
+<div class="main-title">
+  <i class="backicon fa fa-angle-left" (click)="goBack()"></i>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+  <div class="ibox-content">
+    <form class="form-horizontal">
+      <div class="form-group row">
+        <div class="line-title">
+          机票信息
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">航空公司
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <select class="form-control" name="AIRLINE_NAME" [(ngModel)]="model.AIRLINE_NAME">
+            <option value="{{item.name}}" *ngFor="let item of AirLineArray">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">航空公司代码
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.AIRLINE_CODE" name="AIRLINE_CODE" type="text" class="form-control base_input" id="title" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">机票号
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.TICKETS_CODE" (ngModelChange)="TICKETSCODEChange($event)" name="TICKETS_CODE"  type="text" class="form-control has-error" id="author" placeholder="">
+        </div>
+        <small id="passwordHelpInline" class="text-muted" *ngIf="hasTicketsCode">
+          机票号已存在
+        </small>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">乘客姓名
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.PASSENGER" name="PASSENGER" type="text" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">出票日期
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+            name="TICKETS_DATE" [(ngModel)]="model.TICKETS_DATEObject" ngbDatepicker #TICKETS_DATEdate="ngbDatepicker" (click)="TICKETS_DATEdate.toggle()" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="line-title">
+          航空结算
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">总价
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.TOTALBILL" name="TOTALBILL" type="number" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">税费</label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.TAXBILL" name="TAXBILL" type="number" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">票价</label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.TICKETBILL" name="TICKETBILL" type="number" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">返点</label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.BACKBILL" name="BACKBILL" type="number" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">代理费</label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.AGENTSBILL" name="AGENTSBILL" type="number" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">航空结算价
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.AIRBILL" name="AIRBILL" type="number" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="line-title">
+          代理结算
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">销售对象
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-2">
+          <select class="form-control" name="DLTYPE" [(ngModel)]="model.DLTYPE" (change)="DLTYPEChangeEvent($event)">
+            <option value="{{item.value}}" *ngFor="let item of DLTypeArray">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="col-sm-2" *ngIf="setting.showDlSelect">
+          <select class="form-control" name="SelDLNAME" [(ngModel)]="model.SelDLNAME">
+            <option value="{{item.DL_NAME}}" *ngFor="let item of DLNameArray">{{item.DL_NAME}}</option>
+          </select>
+        </div>
+        <div class="col-sm-2" *ngIf="!setting.showDlSelect">
+          <input [(ngModel)]="model.GR_DLNAME" name="GR_DLNAME" type="text" class="form-control" id="author" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">代理结算价
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-5">
+          <input [(ngModel)]="model.DLBILL" name="DLBILL" type="number" class="form-control" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">支付信息
+          <i class="color-red">*</i>
+        </label>
+        <div class="col-sm-2">
+          <select class="form-control" name="ISVALID" [(ngModel)]="model.ISVALID" (change)="PayStateChangeEvent($event)">
+            <option value="{{item.value}}" *ngFor="let item of PAYSTATEArray">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="col-sm-2" *ngIf="setting.showPayState">
+          <input [(ngModel)]="model.PAYMONEY" name="PAYMONEY" type="number" class="form-control" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 form-control-label">其他备注
+        </label>
+        <div class="col-sm-5">
+          <textarea name="REMARK" class="textarea-remark" id="" rows="4" [(ngModel)]="model.REMARK"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-default" (click)="goBack()">返回</button>&nbsp;&nbsp;&nbsp;
+          <button type="submit" class="btn btn-primary" (click)="SaveContent()">保存</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

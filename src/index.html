@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name ="viewport" content ="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>后台管理信息系统</title>
+  <link rel="stylesheet" href="./assets/css/ng2-toastr.min.css">
+  <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
+  <link rel="stylesheet" href="./assets/css/zTreeStyle.css">
+  <link rel="stylesheet" href="./assets/laydate/theme/default/laydate.css">
+  <script src="./assets/js/echarts.min.js"></script>
+  <script src="./assets/js/config.js"></script>
+  <script src="./assets/laydate/laydate.js"></script>
+</head>
+
+<body style="padding-top: 0px; overflow:hidden;">
+  <app></app>
+  <div id="preloader">
+    <div></div>
+  </div>
+</body>
+</html>
+
+<script>
+  let self = this;
+document.addEventListener('touchstart', (e) => {
+  self.moveY = e.targetTouches[0].pageY;
+})
+document.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  let moveWidth = self.moveY - e.targetTouches[0].pageY;
+  if (moveWidth !== 0) {
+    document.body.scrollTop += moveWidth;
+  }
+})
+</script>

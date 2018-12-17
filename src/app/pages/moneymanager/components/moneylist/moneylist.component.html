@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{modaHead}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="content-wrap">
+    <div class="wrap-border clearfix">
+      <table class="table table-hover table-style1">
+        <thead class="table-head-style1">
+          <tr>
+            <th scope="col">航空公司</th>
+            <th scope="col">航空公司代码</th>
+            <th scope="col">票号</th>
+            <th scope="col">乘客姓名</th>
+            <th scope="col">出票日期</th>
+            <th scope="col">总价</th>
+            <th scope="col">航空结算价</th>
+            <th scope="col">代理结算价</th>
+            <th scope="col">代理类型</th>
+            <th scope="col">代理人</th>
+            <th scope="col">支付状态</th>
+            <th scope="col">已付金额</th>
+            <!-- <th class="txt-center" scope="col">操作</th> -->
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let data of DataList,let i = index;" [ngClass]="{'queryState': data.ZT=='5','editState':data.ZT == '2'}">
+            <td>{{data.AIRLINE_NAME}}</td>
+            <td>{{data.AIRLINE_CODE}}</td>
+            <td>{{data.TICKETS_CODE }}</td>
+            <td>{{data.PASSENGER }}</td>
+            <td>{{data.TICKETS_DATE |badateformatpipe:'YYYY-MM-DD'}}</td>
+            <td>{{data.TOTALBILL }}</td>
+            <td>{{data.AIRBILL }}</td>
+            <td>{{data.DLBILL }}</td>
+            <td>{{data.DLTYPE | baagenttype }}</td>
+            <td>{{data.DLNAME }}</td>
+            <td *ngIf="datatype ==1">{{data.HKISVALID | bahkpaystatepipe }}</td>
+            <td *ngIf="datatype !=1">{{data.ISVALID | bapaystatepipe }}</td>
+            <td>{{data.PAYMONEY }}</td>
+            <!-- <td class="operation-wrap txt-center">
+              <i (click)="EditInfo(data)" class="fa fa-lg fa-pencil" title="编辑"></i>
+              <i (click)="Del(data)" class="fa fa-lg fa-trash-o" title="删除"></i>
+            </td> -->
+          </tr>
+          <tr *ngIf="loadingState">
+            <td style="text-align:center;" colspan="12">
+              <sk-fading-circle> </sk-fading-circle>
+            </td>
+          </tr>
+          <tr class="" *ngIf="!DataList.length">
+            <td style="text-align:center;" colspan="12"> 暂无数据</td>
+          </tr>
+        </tbody>
+      </table>
+      <ngb-pagination *ngIf="RecordCount/PageSize >1" class="fr" [collectionSize]="RecordCount" [(page)]="PageNum" [(pageSize)]="PageSize"
+        (pageChange)="pageChange()">
+      </ngb-pagination>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="CloseModal()">关闭</button>
+</div>

@@ -1,0 +1,39 @@
+.wrap {
+    padding: 10px;
+    background: #fff;
+    .wrap-border {
+        padding: 10px;
+        .operation-wrap {
+            .exist{
+                color: cornflowerblue;
+            }
+        }
+        .queryState {
+            background: #b9d0f7;
+        }
+        .editState {
+            background: lawngreen; 
+        }
+        font-size: 14px;
+    }
+    .txt-center {
+        text-align: center;
+    }
+    .floatright{
+        float:right;
+        margin-right: 20px;
+    }
+}
+
+.top-module {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media screen and (max-width: 768px){
+    .content-wrap .wrap-border{
+      
+        overflow-x: scroll;
+    }
+  }
